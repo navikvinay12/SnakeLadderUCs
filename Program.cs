@@ -2,6 +2,11 @@
 {
     internal class SnakeLadder
     {
+        public static int incrementingDice = 0;
+        public SnakeLadder()
+        {
+            incrementingDice++;
+        }
         public static void WelcomeMsg()
         {
             Console.WriteLine("Welcome to Snake and Ladder Game");
@@ -27,7 +32,7 @@
                     case 0:
                         Console.WriteLine("Ladder");
                         position = position + diceOutput;
-                        if(position>100)
+                        if (position > 100)
                         {
                             position = position - diceOutput;   //now player position will not go beyond 100th position
                         }
@@ -51,7 +56,8 @@
         static void Main(string[] args)
         {
             WelcomeMsg();
-            Console.WriteLine("Position :" + GameBoardAndPosition());
+            Console.WriteLine("Done! Reached Position :" + GameBoardAndPosition());
+            Console.WriteLine($"No of times the Dice Rolled is : {SnakeLadder.incrementingDice}");
         }
     }
 }
