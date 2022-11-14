@@ -1,6 +1,6 @@
 ﻿namespace SnakeLadderUCs
 {
-    internal class Program
+    internal class SnakeLadder
     {
         public static void WelcomeMsg()
         {
@@ -12,30 +12,42 @@
             int diceOutput = random.Next(1, 7);
             return diceOutput;
         }
-        public static void Case()
+        public static int GameBoardAndPosition()
         {
+            int position = 0;
             Random random = new Random();
-            int diceCheck = random.Next(1, 4);
-            switch (diceCheck)
+            int diceOutput = SnakeLadder.DiceThrown();
+
+            while (position >= 0 && position < 100)
             {
-                case 1:
-                    Console.WriteLine("Ladder");
-                    break;
-                case 2:
-                    Console.WriteLine("Snake");
-                    break;
-                default:
-                    Console.WriteLine("No Play");
-                    break;
+                SnakeLadder invokingConstructor = new SnakeLadder();
+                int checksNewPosition = random.Next(3);
+                switch (checksNewPosition)
+                {
+                    case 0:
+                        Console.WriteLine("Ladder");
+                        position = position + diceOutput;
+                        break;
+                    case 1:
+                        Console.WriteLine("Snake");
+                        position = position - diceOutput;
+                        if (position < 0)      //if player moves below 0 then will take it back to its previous position (UC4)
+                        {
+                            position = position + diceOutput;
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("No Play");
+                        break;
+                }
+                Console.WriteLine("Position :" + position);
             }
+            return position;
         }
         static void Main(string[] args)
         {
             WelcomeMsg();
-            int position = 0;
-            Console.WriteLine("Initial Position :" + position);
-            Console.WriteLine("Dice Output :" + DiceThrown());
-            Case();
+            Console.WriteLine("Position :" + GameBoardAndPosition());
         }
     }
 }
