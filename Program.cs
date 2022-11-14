@@ -27,6 +27,10 @@
                     case 0:
                         Console.WriteLine("Ladder");
                         position = position + diceOutput;
+                        if(position>100)
+                        {
+                            position = position - diceOutput;   //now player position will not go beyond 100th position
+                        }
                         break;
                     case 1:
                         Console.WriteLine("Snake");
