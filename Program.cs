@@ -26,14 +26,15 @@
         public static (int, int) GameBoardAndPosition()
         {
             {
-                int pP1 = 0, pP2 = 0;
-                int diceOutput = SnakeLadder.DiceThrown();
-
-                while ((pP1 >= 0 && pP1 < 100) && (pP2 >= 0 && pP2 < 100))
+                int pP1 = 0, pP2 = 0, cP1 = 0, cP2 = 0; //pP1=position of Player 1 , cP1=Count of dice for player 1.
+                while ((pP1 >= 0 && pP1 < 100) && (pP2 >= 0 && pP2 < 100))  
                 {
                 Player1GotLadderSoRepeating:
                     SnakeLadder invokingConstructorp1 = new SnakeLadder();
-                    int checksPositionP1 = Case();
+                    int diceOutput = SnakeLadder.DiceThrown();      //dice rolled (1-6)
+                    Console.WriteLine($"Player 1 dice rolled : {diceOutput}");
+                    cP1++;
+                    int checksPositionP1 = Case();      //dice rolled to check options (ladder,snake,noPlay)
                     switch (checksPositionP1)
                     {
                         case 0:
@@ -41,9 +42,9 @@
                             pP1 = pP1 + diceOutput;
                             if (pP1 > 100)
                             {
-                                pP1 = pP1 - diceOutput;   
+                                pP1 = pP1 - diceOutput;
                             }
-                            if (pP1==100)
+                            if (pP1 == 100)
                             {
                                 Console.WriteLine($"Player 1 Position is :{pP1}");
                                 goto Player1WonSoTerminatingGame;
@@ -53,7 +54,7 @@
                         case 1:
                             Console.WriteLine("Snake");
                             pP1 = pP1 - diceOutput;
-                            if (pP1 < 0)      
+                            if (pP1 < 0)
                             {
                                 pP1 = pP1 + diceOutput;
                             }
@@ -63,10 +64,13 @@
                             break;
                     }
                     Console.WriteLine($"Player 1 Position is :{pP1}");
-                    
-                    Player2GotLadderSoRepeating:
+
+                Player2GotLadderSoRepeating:
                     SnakeLadder invokingConstructorp2 = new SnakeLadder();
-                    int checksPositionP2 = Case();
+                    diceOutput = SnakeLadder.DiceThrown();      ////dice rolled (1-6)
+                    Console.WriteLine($"Player 2 dice rolled : {diceOutput}");
+                    cP2++;
+                    int checksPositionP2 = Case();      //dice rolled to check options (ladder,snake,noPlay)
                     switch (checksPositionP2)
                     {
                         case 0:
@@ -74,7 +78,7 @@
                             pP2 = pP2 + diceOutput;
                             if (pP2 > 100)
                             {
-                                pP2 = pP2 - diceOutput;   
+                                pP2 = pP2 - diceOutput;
                             }
                             if (pP2 == 100)
                             {
@@ -85,7 +89,7 @@
                         case 1:
                             Console.WriteLine("Snake");
                             pP2 = pP2 - diceOutput;
-                            if (pP2 < 0)      
+                            if (pP2 < 0)
                             {
                                 pP2 = pP2 + diceOutput;
                             }
@@ -96,7 +100,10 @@
                     }
                     Console.WriteLine($"Player 2 Position is :{pP2}");
                 }
-                Player1WonSoTerminatingGame:
+            Player1WonSoTerminatingGame:
+                Console.WriteLine();
+                Console.WriteLine($"Player 1 dice rolled count : {cP1} times");
+                Console.WriteLine($"Player 2 dice rolled count : {cP2} times");
                 return (pP1, pP2);
             }
         }
@@ -113,14 +120,14 @@
         }
         public static void DiceRollingCount()
         {
-            Console.WriteLine($"No of times the Dice Rolled is : {SnakeLadder.incrementingDice}");
+            Console.WriteLine($"Total No of times the Dice Rolled is : {SnakeLadder.incrementingDice} times");
         }
         static void Main(string[] args)
         {
             WelcomeMsg();
-            (int pP1, int pP2) = GameBoardAndPosition();
-            WinnerPlayer(pP1, pP2);
-            DiceRollingCount();
+            (int pP1, int pP2) = GameBoardAndPosition();    //2 players match and their scores.
+            WinnerPlayer(pP1, pP2);     //winner report. 
+            DiceRollingCount();     //number of times dice rolled count .
         }
     }
 }
