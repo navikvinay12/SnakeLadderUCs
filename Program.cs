@@ -27,7 +27,7 @@
         {
             {
                 int pP1 = 0, pP2 = 0, cP1 = 0, cP2 = 0; //pP1=position of Player 1 , cP1=Count of dice for player 1.
-                while ((pP1 >= 0 && pP1 < 100) && (pP2 >= 0 && pP2 < 100))  
+                while ((pP1 < 100) && (pP2 < 100))  
                 {
                 Player1GotLadderSoRepeating:
                     SnakeLadder invokingConstructorp1 = new SnakeLadder();
