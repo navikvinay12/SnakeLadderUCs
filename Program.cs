@@ -31,9 +31,9 @@
                     case 1:
                         Console.WriteLine("Snake");
                         position = position - diceOutput;
-                        if (position < 0)      //if player moves below 0 then will take it back to its previous position (UC4)
+                        if (position < 0)      
                         {
-                            position = 0;
+                            position = 0;   //if player moves below 0 then it will set the position to 0 only .
                         }
                         break;
                     default:
