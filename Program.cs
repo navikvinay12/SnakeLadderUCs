@@ -33,7 +33,7 @@
                         position = position - diceOutput;
                         if (position < 0)      //if player moves below 0 then will take it back to its previous position (UC4)
                         {
-                            position = position + diceOutput;
+                            position = 0;
                         }
                         break;
                     default:
